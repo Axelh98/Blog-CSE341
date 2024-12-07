@@ -10,6 +10,11 @@ const passport = require("./config/passport");
 const blogRoutes = require("./routes/blogRoutes");  
 
 
+// Swagger
+const swaggerAutogen = require("swagger-autogen")();
+const swaggerUi = require("swagger-ui-express");
+const swaggerDocument = require("./swagger-output.json"); // swagger-jsdoc output
+
 
 const session = require("express-session");
 
@@ -31,29 +36,16 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
+// ENDPOINT FOR SWAGGER 
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+
+
 // Routes
 app.use("/auth", authRoutes);
 app.use("/users", userRoutes);
 app.use("/posts", blogRoutes);
 //app.use("/api/comments", require("./routes/commentRoutes"));
 //app.use("/api/tags", require("./routes/tagRoutes"));
-
-// Swagger Docs
-const swaggerJsDoc = require("swagger-jsdoc");
-const swaggerUi = require("swagger-ui-express");
-const swaggerOptions = {
-  definition: {
-    openapi: "3.0.0",
-    info: {
-      title: "Blog Management API",
-      version: "1.0.0",
-      description: "API for managing blogs and comments",
-    },
-  },
-  apis: ["./routes/*.js"], // Documentation in route files
-};
-const swaggerDocs = swaggerJsDoc(swaggerOptions);
-app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
 // Start server
 const PORT = process.env.PORT || 5000;
