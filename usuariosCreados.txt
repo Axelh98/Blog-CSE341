@@ -1,0 +1,7 @@
+Usuarios creados ficticios:
+
+{
+  "name": "fulano de tal"
+  "email": "test@example.com",
+  "password": "fulano123"
+}
