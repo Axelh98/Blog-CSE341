@@ -1,4 +1,5 @@
 const passport = require("passport");
+const localStrategy = require("passport-local").Strategy;
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
 const User = require("../models/user"); 
 
@@ -32,6 +33,33 @@ passport.use(
     }
   )
 );
+
+passport.use(
+  new localStrategy(
+    {
+      usernameField: "email",
+      passwordField: "password",
+    },
+    async (email, password, done) => {
+      try {
+        const user = await User.findOne({ email });
+        if (!user) {
+          return done(null, false, { message: "Incorrect email or password" });
+        }
+        if (!user.password) {
+          return done(null, false, { message: "Incorrect email or password" });
+        }
+        if (!await user.comparePassword(password)) {
+          return done(null, false, { message: "Incorrect email or password" });
+        }
+
+        done(null, user);
+      } catch (error) {
+        done(error, null);
+      }
+    }
+  )
+);  
 
 // Serialize and deserialize user
 passport.serializeUser((user, done) => done(null, user.id));

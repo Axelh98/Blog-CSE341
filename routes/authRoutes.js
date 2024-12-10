@@ -20,6 +20,10 @@ router.get(
   }
 );
 
+// get login page
+router.get("/", (req, res) => {
+  res.render("login");
+});
 
 // Login
 router.post("/login", authController.loginUser);
