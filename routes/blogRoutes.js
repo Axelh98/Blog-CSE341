@@ -4,18 +4,18 @@ const router = express.Router();
 const post = require('../controllers/blogController');
 
 // Crear una nueva publicación
-router.post('/posts', post.createPost);
+router.post('/', post.createPost);
 
 // Obtener todas las publicaciones
-router.get('/posts', post.getAllPosts);
+router.get('/', post.getAllPosts);
 
 // Obtener una publicación específica por su ID
-router.get('/posts/:id', post.getPostById);
+router.get('/:id', post.getPostById);
 
 // Actualizar una publicación
-router.put('/posts/:id', post.updatePost);
+router.put('/:id', post.updatePost);
 
 // Eliminar una publicación
-router.delete('/posts/:id', post.deletePost);
+router.delete('/:id', post.deletePost);
 
 module.exports = router;
