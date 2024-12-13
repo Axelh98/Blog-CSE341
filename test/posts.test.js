@@ -1,8 +1,8 @@
 const request = require("supertest");
 const mongoose = require("mongoose");
-const app = require("../server"); // Aquí importas tu archivo de servidor principal donde está configurada la app
+const app = require("../server"); 
 
-// Mocking de las dependencias de la base de datos
+
 jest.mock("../models/post", () => ({
   find: jest.fn(),
   findById: jest.fn()
@@ -17,7 +17,7 @@ describe("GET /posts", () => {
       { _id: new mongoose.Types.ObjectId(), title: "Post 2", content: "Content 2" }
     ];
 
-    Post.find.mockResolvedValue(mockPosts); // Simulamos el comportamiento de Post.find()
+    Post.find.mockResolvedValue(mockPosts); 
 
     const response = await request(app).get("/posts");
 
@@ -49,7 +49,7 @@ describe("GET /posts/:id", () => {
 
   it("should return an error if the post is not found", async () => {
     const postId = new mongoose.Types.ObjectId();
-    Post.findById.mockResolvedValue(null); // Simula que no se encuentra el post
+    Post.findById.mockResolvedValue(null); 
 
     const response = await request(app).get(`/posts/${postId}`);
 
