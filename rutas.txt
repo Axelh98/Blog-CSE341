@@ -1,0 +1,24 @@
+Rutas 
+
+- USERS
+
+POST - http://localhost:5000/users
+GET - http://localhost:5000/users
+GET - http://localhost:5000/users/id
+PUT - http://localhost:5000/users/id
+DELETE - http://localhost:5000/users/id
+
+- POSTS
+
+POST - http://localhost:5000/posts
+GET - http://localhost:5000/posts
+GET - http://localhost:5000/posts/id
+DELETE - http://localhost:5000/posts/id
+
+- Comments
+POST - http://localhost:5000/comments
+GET - http://localhost:5000/comments
+GET - http://localhost:5000/comments/id
+PUT - http://localhost:5000/comments/id
+DELETE - http://localhost:5000/comments/id
+

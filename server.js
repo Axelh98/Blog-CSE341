@@ -45,8 +45,8 @@ app.set("views", path.join(__dirname, "views"));
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 
-// Routes
-
+// Routes ! ! ! ! 
+// Routes ! ! ! ! 
 app.get("/", (req, res) => {
   res.render("login");
 });

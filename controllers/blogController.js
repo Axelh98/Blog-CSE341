@@ -1,4 +1,5 @@
 const Post = require('../models/post'); 
+const Comment = require('../models/comments');
 
 const createPost = async (req, res) => {
   try {
@@ -24,19 +25,24 @@ const getAllPosts = async (req, res) => {
 
 // Obtain a post by ID
 const getPostById = async (req, res) => {
-    const { id } = req.params; // El ID de la publicación
-  
-    try {
-      const post = await Post.findById(id);
-      if (!post) {
-        return res.status(404).json({ message: "Post not found" });
-      }
-      res.status(200).json(post);
-    } catch (error) {
-      res.status(500).json({ message: "Error fetching post", error });
+  const { id } = req.params; // El ID de la publicación
+
+  try {
+    const post = await Post.findById(id);
+    if (!post) {
+      return res.status(404).json({ message: "Post not found" });
     }
-  };
-  
+
+    // Busca los comentarios relacionados con el post
+    const comments = await Comment.find({ post: id }).populate("author");
+
+    res.status(200).json({ post, comments });
+  } catch (error) {
+    res.status(500).json({ message: "Error fetching post", error });
+  }
+};
+
+
 
 // Update a post by ID
 const updatePost = async (req, res) => {

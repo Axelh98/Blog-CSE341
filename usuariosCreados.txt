@@ -5,3 +5,27 @@ Usuarios creados ficticios:
   "email": "test@example.com",
   "password": "fulano123"
 }
+
+// CREATE USER
+
+{
+  "name": "UserForVideo",
+  "email": "videotest@youtubeTest.com",
+  "password": "video123"
+}
+
+
+// CREATE POST
+{
+  "title": "This is a post for youtube video",
+  "body": "Recording for youtube video test, showing how to create a post",
+  "author": "" 
+}
+
+// COMMENT POST
+
+{
+  "content": "This is a great post, thank you for sharing!",
+  "author": "64c1a731e4b0d29c4b8f4d62"
+}
+
